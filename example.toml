@@ -463,6 +463,9 @@ enabled = false
 
 # ── Control Center ────────────────────────────────────────────────────────────
 
+[control_center]
+height = 520                      # preferred logical height (520–2160), limited to the screen
+
 # Shortcut buttons shown on the right side of the dashboard (up to 6).
 # [[control_center.shortcuts]]
 # type = "wifi"

@@ -89,6 +89,12 @@ float ControlCenterPanel::preferredWidth() const {
   }
 }
 
+float ControlCenterPanel::preferredHeight() const {
+  const auto height =
+      m_config != nullptr ? m_config->config().controlCenter.height : ControlCenterConfig::kDefaultHeight;
+  return scaled(static_cast<float>(height));
+}
+
 PanelPlacement ControlCenterPanel::panelPlacement() const noexcept {
   return m_config == nullptr ? PanelPlacement::Attached : m_config->config().shell.panel.controlCenterPlacement;
 }
