@@ -26,6 +26,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <utility>
 
 using namespace noctalia::config::schema;
 
@@ -414,6 +415,7 @@ location = "https://example.invalid/bad"
     };
     c.battery.warningThreshold = 15;
     c.battery.deviceThresholds = {{"BAT0", 10}, {"hidpp:1", 25}};
+    c.controlCenter.height = 1000;
     c.controlCenter.sidebarMode = ControlCenterSidebarMode::Full;
     c.controlCenter.sidebarSectionMode = ControlCenterSidebarMode::None;
     c.controlCenter.calendarTab.showEventsCard = false;
@@ -570,6 +572,24 @@ location = "https://example.invalid/bad"
   }
 
   void checkClamps() {
+    for (const auto& [input, expected] : {std::pair{0, 520}, std::pair{1000, 1000}, std::pair{9999, 2160}}) {
+      ControlCenterConfig controlCenter;
+      Diagnostics diagnostics;
+      const toml::table table{{"height", input}};
+      readInto(table, controlCenter, controlCenterSchema(), "control_center", diagnostics);
+      if (controlCenter.height != expected) {
+        fail("control_center.height: incorrect range clamp");
+      }
+    }
+    {
+      ControlCenterConfig controlCenter;
+      Diagnostics diagnostics;
+      readInto(toml::table{}, controlCenter, controlCenterSchema(), "control_center", diagnostics);
+      if (controlCenter.height != 520) {
+        fail("control_center.height: default must preserve the existing height");
+      }
+    }
+
     // sound_volume above the max clamps to 1.0.
     {
       auto t = toml::parse("sound_volume = 2.5");

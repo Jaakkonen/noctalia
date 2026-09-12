@@ -1388,6 +1388,16 @@ namespace settings {
           "size dimension wide narrow"
       ));
     }
+    {
+      SliderSetting height =
+          sliderFor(cfg.controlCenter.height, noctalia::config::schema::kControlCenterHeightRange, true);
+      height.valueSuffix = "px";
+      entries.push_back(makeEntry(
+          SettingsSection::ControlCenter, "layout", tr("settings.schema.panels.control-center-height.label"),
+          tr("settings.schema.panels.control-center-height.description"), {"control_center", "height"},
+          std::move(height), "size dimension tall short notifications display"
+      ));
+    }
     entries.push_back(makeEntry(
         SettingsSection::ControlCenter, "navigation", tr("settings.schema.panels.control-center-sidebar.label"),
         tr("settings.schema.panels.control-center-sidebar.description"), {"control_center", "sidebar"},

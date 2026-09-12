@@ -2414,6 +2414,10 @@
           "description": "Choose which tabs appear in Control Center; unchecked tabs are hidden",
           "label": "Control Center Tabs"
         },
+        "control-center-height": {
+          "description": "Preferred height of the Control Center panel in logical pixels, limited to the available screen space",
+          "label": "Control Center Height"
+        },
         "control-center-width": {
           "description": "Width of the Control Center panel in pixels (compact and no-sidebar modes scale down from this)",
           "label": "Control Center Width"

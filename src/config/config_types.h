@@ -1573,6 +1573,7 @@ struct ThemeConfig {
 
 struct ControlCenterConfig {
   static constexpr std::int32_t kDefaultWidth = 700;
+  static constexpr std::int32_t kDefaultHeight = 520;
 
   struct CalendarTabConfig {
     bool showEventsCard = true;
@@ -1584,7 +1585,8 @@ struct ControlCenterConfig {
   std::vector<std::string> hiddenTabs; // tab keys (see kTabs) the user has hidden; empty = all available shown
   ControlCenterSidebarMode sidebarMode = ControlCenterSidebarMode::Compact;
   ControlCenterSidebarMode sidebarSectionMode = ControlCenterSidebarMode::Compact;
-  std::int32_t width = kDefaultWidth; // full-sidebar logical width; compact/none modes scale down from this
+  std::int32_t width = kDefaultWidth;   // full-sidebar logical width; compact/none modes scale down from this
+  std::int32_t height = kDefaultHeight; // logical height before content scaling and output clamping
   bool showShortcutLabels = true;
   bool showSessionButton = true;
   CalendarTabConfig calendarTab;
